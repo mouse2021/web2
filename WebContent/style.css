@@ -1,0 +1,215 @@
+@CHARSET "UTF-8";
+
+* {
+	margin: 0;
+	padding: 0;
+	font-size: 10px;
+	font-family: "나눔고딕", "NanumGothic", "ngeot", "돋움", "DotumChe", "Dotum";
+}
+a {
+	text-decoration: none;
+	border: 0;
+}
+img {
+	width: 50px;
+	height: 50px;
+	border: 0;
+}
+.all {
+	width: 1000px;
+	margin: 0 auto;
+}
+.all > .top {
+	width: 850px;
+	margin: 0 auto;
+	position: relative;
+	overflow: hidden;
+}
+.all > .top > * {
+	float: left;
+}
+.all > .top > a {
+	width: 185px;
+	height: 40px;
+}
+.all > .top > a > img {
+	width: 100%;
+	height: 100%;
+}
+.all > .top > div {
+	width: 665px;
+	height: 40px;
+	position: relative;
+	display: table;
+}
+.all > .top > div > a {
+	width: 83px;
+	font-size: 12px;
+	font-weight: bold;
+	display: table-cell;
+	text-align: center;
+	vertical-align: middle;
+}
+/* ------------------------------------------------------------------------------------ */
+.all > .content > .slider {
+	height: 230px;
+}
+.all > .content > .slider > img {
+	width: 100%;
+	height: 100%;
+}
+/* ------------------------------------------------------------------------------------ */
+.all > .content > .info {
+	width: 780px;
+	height: 160px;
+	margin: 0 auto;
+	position: relative;
+	overflow: hidden;
+}
+.all > .content > .info > * {
+	width: 260px;
+	height: 158px;
+	float: left;
+}
+.all > .content > .info > .left {
+	width: 258px;
+	border: 1px solid #ccc;
+	position: relative;
+}
+.all > .content > .info > .left > * {
+	float: left;
+	position: relative;
+	width: 100%;
+	height: 50%;
+}
+.all > .content > .info > .left > * > * {
+	float: left;
+	width: 50%;
+	height: 100%;
+}
+.all > .content > .info > .left > * > * > * {
+	width: 100%;
+	height: 100%;
+}
+.all > .content > .info > .center {
+	border: 1px solid #ccc;
+	border-right: 0;
+	border-left: 0;
+}
+.all > .content > .info > .center > * {
+	width: 100%;
+	height: 100%;
+}
+.all > .content > .info > .center > * > * {
+	width: 100%;
+	height: 100%;
+}
+.all > .content > .info > .right {
+	height: 160px;
+}
+.all > .content > .info > .right > iframe {
+	width: 100%;
+	height: 100%;
+}
+/* ------------------------------------------------------------------------------------ */
+.all > .content > .board {
+	width: 1000px;
+	height: 360px;
+	margin: 0 auto;
+	position: relative;
+	overflow: hidden;
+	background: #ddd;
+}
+.all > .content > .board > * {
+	width: 780px;
+	height: 360px;
+	margin: 0 auto;
+	position: relative;
+	overflow: hidden;
+	background: pink;
+}
+.all > .content > .board > * > * {
+	float: left;
+}
+/* ------------------------------------------------------------------------------------ */
+.all > .footer {
+	background: blue;
+	width: 1000px;
+	margin: 0 auto;
+	margin-bottom: 20px;
+}
+.all > .footer > * {
+	width: 780px;
+	margin: 0 auto;
+	position: relative;
+	overflow: hidden;
+	margin-bottom: 20px;
+}
+.all > .footer > * > * {
+	float: left;
+}
+.all > .footer > * > .left {
+	width: 185px;
+	height: 40px;
+	position: relative;
+	overflow: hidden;
+}
+.all > .footer > * > .left > * {
+	float: left;
+}
+.all > .footer > * > .left > div {
+	width: 100%;
+	height: 40%
+}
+.all > .footer > * > .left > a {
+	width: 100%;
+	height: 60%
+}
+.all > .footer > * > .left > a > img {
+	width: 60%;
+	height: 100%;
+}
+.all > .footer > * > .right {
+	width: 595px;
+	height: 40px;
+	display: table;
+	position: relative;
+}
+.all > .footer > * > .right > div {
+	font-size: 10px;
+	color: white;
+	display: table-cell;
+	text-align: left;
+	vertical-align: bottom;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

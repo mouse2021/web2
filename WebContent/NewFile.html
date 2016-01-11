@@ -1,0 +1,237 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>자바스크립트 연습</title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			h1 {
+				position: fixed;
+				top: 20px;
+				left: 20px;
+				font-size: 30px;
+				font-weight: bold;
+				text-shadow: 0px 0px 5px yellow;
+				color: green;
+			}
+			.b > .transparentBackground {
+				position: fixed;
+				top: 0px;
+				left: 0px;
+				width: 100%;
+				height: 100%;
+				background:#000; /* IE에서 투명배경을 주기위해서 */
+				background: rgba(0,0,0,0.5); /* 크롬에서 투명배경을 주기위해서 */
+				filter:alpha(opacity=50); /* IE에서 투명배경을 주기위해서 */
+				z-index: 100;
+			}
+			.b > .top {
+				position: fixed;
+				overflow: hidden;
+				top: 20px;
+				left: 50%;
+				width: 64px;
+				height: 64px;
+				margin-left: -32px;
+				background: transparent;
+				z-index: 101;
+			}
+			.b > .top > img {
+				opacity: 0.5; /* 크롬 투명도 */
+				filter:alpha(opacity=50); /* IE 투명도 */
+			}
+			.b > .left {
+				position: fixed;
+				overflow: hidden;
+				top: 50%;
+				left: 20px;
+				width: 64px;
+				height: 64px;
+				margin-top: -32px;
+				background: transparent;
+				z-index: 101;
+			}
+			.b > .left > img {
+				opacity: 0.5;
+				filter:alpha(opacity=50);
+				margin-top: -64px;
+			}
+			.b > .right {
+				position: fixed;
+				overflow: hidden;
+				top: 50%;
+				left: 100%;
+				width: 64px;
+				height: 64px;
+				margin-top: -32px;
+				margin-left: -86px;
+				background: transparent;
+				z-index: 101;
+			}
+			.b > .right > img {
+				opacity: 0.5;
+				filter:alpha(opacity=50);
+				margin-top: -128px;
+			}
+			.b > .center {
+				position: fixed;
+				top: 50%;
+				left: 50%;
+				/* width: 400px;
+				height: 600px;
+				margin-top: -300px;
+				margin-left: -200px; */
+				background: white;
+				z-index: 101;
+				display: table;
+			}
+/* 			.b > .center > div {
+				font-size: 200px;
+				font-weight: bold;
+				width: 400px;
+				height: 600px;
+				display: table-cell;
+				vertical-align: middle;
+				text-align: center;
+			} */
+			.imgs {
+				width: 0;
+				height: 0;
+				visibility: hidden;
+				overflow: hidden;
+			}
+		</style>
+		<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				var sw = 0;
+				var index = 0;
+				var len = $(".imgs > img").length;
+				var newsrc;
+				function setImageSrc() {
+					newsrc = $(".imgs > img:eq("+index+")").attr("src");
+					$(".b > .center > img").attr("src", newsrc);
+					setCenterPosition();
+				}
+				function setButtenImg() {
+					var xebtn = "http://sypark.gamagol.co.kr/xe/addons/resize_image/btn.png";
+					$(".b > .top > img").attr("src", xebtn);
+					$(".b > .left > img").attr("src", xebtn);
+					$(".b > .right > img").attr("src", xebtn);
+				}
+				function setButtenVisible() {
+					if (index >= len-1) {
+						$(".b > .top > img").css("visibility", "visible");
+						$(".b > .left > img").css("visibility", "visible");
+						$(".b > .right > img").css("visibility", "hidden");
+					} else if (index <= 0) {
+						$(".b > .top > img").css("visibility", "visible");
+						$(".b > .left > img").css("visibility", "hidden");
+						$(".b > .right > img").css("visibility", "visible");
+					} else {
+						$(".b > .top > img").css("visibility", "visible");
+						$(".b > .left > img").css("visibility", "visible");
+						$(".b > .right > img").css("visibility", "visible");
+					}
+				}
+				function setCenterPosition() {
+					var maxWidth = 1000;
+					var maxHeight = 550;
+					var height = $(".imgs > img:eq("+index+")").height();
+					var width = $(".imgs > img:eq("+index+")").width();
+					if (maxHeight >= height && maxWidth >= width) {
+						resizeImage(maxWidth, maxHeight, height, width);
+					} else {
+						 if ((maxHeight/height) < (maxWidth/width)) {
+							var div = height / maxHeight;
+							height = parseInt(height / div);
+							width = parseInt(width / div);
+							resizeImage(maxWidth, maxHeight, height, width);
+						} else {
+							var div = width / maxWidth;
+							height = parseInt(height / div);
+							width = parseInt(width / div);
+							resizeImage(maxWidth, maxHeight, height, width);
+						}
+					}
+				}
+				function resizeImage(maxWidth, maxHeight, height, width) {
+					$(".b > .center > img").css("height", height);
+					$(".b > .center > img").css("marginTop", -(parseInt(height/2))+"px");
+ 					$(".b > .center > img").css("width", width);
+					$(".b > .center > img").css("marginLeft", -(parseInt(width/2))+"px");
+				}
+				function myAddRemove(select) {
+					if (select == true) {
+						sw = 1;
+						$(".b").prepend("<div class='transparentBackground'></div>");
+						$(".b").prepend("<div class='top'><img /></div>");
+						$(".b").prepend("<div class='left'><img /></div>");
+						$(".b").prepend("<div class='right'><img /></div>");
+						$(".b").prepend("<div class='center'><img /></div>");
+						setImageSrc();
+						setButtenImg();
+						setButtenVisible();
+						$(".b > .top").click(function(e) {
+							myAddRemove(false);
+						});
+						$(".b > .left").click(function(e) {
+							if (index > 0) index--;
+							setImageSrc();
+							setButtenVisible();
+						});
+						$(".b > .right").click(function(e) {
+							if (index < len-1) index++;
+							setImageSrc();
+							setButtenVisible();
+						});
+						$(".b > .transparentBackground").click(function(e) {
+							myAddRemove(false);
+						});
+					} else {
+						sw = 0;
+						$(".b .transparentBackground").remove();
+						$(".b .top").remove();
+						$(".b .left").remove();
+						$(".b .right").remove();
+						$(".b .center").remove();
+					}
+				}
+				$("body > img").click(function(e) {
+					if (sw == 0) {
+						myAddRemove(true);
+					}
+				});
+				$(document).keydown(function(e) {
+					if (sw == 0 && e.keyCode == 65) {
+						myAddRemove(true);
+					} else if (sw != 0 && e.keyCode == 65) {
+						myAddRemove(false);
+					}
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<h1>안녕하세요</h1>
+		<img src="http://moeboard.net/services/img/e46beb4c-e883-467f-91f3-e3ba5f30c871.png" />
+		<div class="b"></div>
+		<div class="imgs"> <!-- css로 숨겨놓은 이미지들 -->
+			<img src="http://static.ebs.co.kr/images/public/lectures/2014/06/19/10/bhpImg/44deb98d-1c50-4073-9bd7-2c2c28d65f9e.jpg" />
+			<img src="http://static.ebs.co.kr/images/ebs/WAS-HOME/portal/upload/img/programinfo/person/per/1242723588618_dphGgSgOAp.jpg" />
+			<img src="http://i.imgur.com/2PBLK.jpg" />
+			<img src="http://static.ebs.co.kr/images/ebs/WAS-HOME/portal/upload/img/programinfo/person/per/1242723572507_BOtiBfIuyL.jpg" />
+			<img src="http://static.ebs.co.kr/images/ebs/WAS-HOME/portal/upload/img/programinfo/person/per/1242723212878_bxr2reBk9w.jpg" />
+			<img src="http://static.ebs.co.kr/images/ebs/WAS-HOME/portal/upload/img/programinfo/person/per/1242723602807_VcCnrrJwzW.jpg" />
+			<img src="http://static.ebs.co.kr/images/ebs/WAS-HOME/portal/upload/img/programinfo/person/per/1242723549377_49L83YjvJL.jpg" />
+			<img src="http://static.ebs.co.kr/images/ebs/WAS-HOME/portal/upload/img/programinfo/person/per/1242723513396_kp9fgpCfTO.jpg" />
+			<img src="https://pixabay.com/static/uploads/photo/2015/10/18/11/58/beetles-994211_960_720.jpg" />
+			<img src="https://pixabay.com/static/uploads/photo/2013/10/15/08/52/tropical-beetles-195888_960_720.jpg" />
+			<img src="https://pixabay.com/static/uploads/photo/2014/03/02/12/57/insect-278083_960_720.jpg" />
+			<img src="https://pixabay.com/static/uploads/photo/2013/10/05/16/54/bug-191085_960_720.jpg" />
+		</div>
+	</body>
+</html>
